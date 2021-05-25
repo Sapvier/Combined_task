@@ -1,0 +1,1 @@
+export const SET_CHECKED = 'SET_CHECKED'

@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {Box, Button, Link, TextField} from "@material-ui/core";
 import {GoogleLogin} from "react-google-login";
 import {useStyles} from "./styled";
-import {setAuth} from "../../store/auth/actions";
+import {setAuth, setOAuth} from "../../store/auth/actions";
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom";
+import Divider from "../../components/Divider/Divider";
 
 
 const AuthForm = () => {
@@ -19,7 +20,7 @@ const AuthForm = () => {
 
     const responseGoogle = (response) => {
         if (!!response) {
-            dispatch(setAuth())
+            dispatch(setOAuth(response.googleId))
             history.push('/tickets')
         }
     }
@@ -43,6 +44,14 @@ const AuthForm = () => {
 
     return (
         <Box className={classes.box}>
+            <GoogleLogin
+                clientId="329385351437-1i1mg0trorrlnckai6mqscb3el21v4td.apps.googleusercontent.com"
+                buttonText="Sign in with Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+            />
+            <Divider/>
             <form noValidate autoComplete="off" onSubmit={submitHandler}>
                 <TextField error={credentials.error} id="username" label="Username" variant="outlined" size="small"
                            type='text' onChange={changeHandler}/>
@@ -53,13 +62,6 @@ const AuthForm = () => {
                     <Link href="https://google.com/" target="_blank" rel="noreferrer" color='primary'>Need help?</Link>
                 </div>
             </form>
-            <GoogleLogin
-                clientId="329385351437-1i1mg0trorrlnckai6mqscb3el21v4td.apps.googleusercontent.com"
-                buttonText="Sign In"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-            />
         </Box>
     );
 };

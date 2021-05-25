@@ -8,6 +8,21 @@ export const useStyles = makeStyles({
         minHeight: '100vh',
         display: 'flex',
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flexDirection: 'column',
+        backgroundColor: '#F1FCFF',
+        padding: 0
     },
-});
+    rootCentered: {
+        background: colors.main,
+        maxWidth: '100%',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: 'column',
+        backgroundColor: '#F1FCFF',
+        padding: 0,
+        paddingBottom: '50px'
+    }
+})

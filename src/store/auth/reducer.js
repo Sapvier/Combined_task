@@ -1,4 +1,4 @@
-import {SET_IS_AUTH} from "./types";
+import {FETCH_ID_FAIL, FETCH_ID_FETCHING, FETCH_ID_SUCCESS, SET_IS_AUTH, SET_IS_OAUTH} from "./types";
 
 
 const initialState = () => {
@@ -7,10 +7,10 @@ const initialState = () => {
 
     return {
         isAuth: localStore,
-        fetchStatus: 'idle'
+        fetchStatus: 'idle',
+        clientId: null
     }
 }
-
 
 export const authReducer = (state = initialState(), action) => {
     switch (action.type) {
@@ -20,6 +20,22 @@ export const authReducer = (state = initialState(), action) => {
             return {
                 ...state, isAuth: !state.isAuth
             }
+        }
+        case SET_IS_OAUTH: {
+            return {
+                ...state,
+                isAuth: true,
+                clientId: action.payload
+            }
+        }
+        case FETCH_ID_FETCHING: {
+            return {...state, fetchStatus: 'fetching'}
+        }
+        case FETCH_ID_SUCCESS: {
+            return {...state, fetchStatus: 'success'}
+        }
+        case FETCH_ID_FAIL: {
+            return {...state, fetchStatus: 'fail'}
         }
     }
 }

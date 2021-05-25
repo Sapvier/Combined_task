@@ -1,10 +1,9 @@
-
 import {applyMiddleware, createStore} from 'redux';
 import {rootReducer} from './rootReducer';
-
 import createSagaMiddleware from 'redux-saga';
 import {composeWithDevTools} from "redux-devtools-extension";
 import {loadState, saveState} from "./localStorage";
+import rootSaga from "./rootSaga";
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -21,4 +20,4 @@ store.subscribe(() => {
     )
 })
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);

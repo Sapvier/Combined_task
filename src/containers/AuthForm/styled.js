@@ -1,12 +1,12 @@
 import {makeStyles} from "@material-ui/styles";
-import {colors} from "../../constants";
+
 
 export const useStyles = makeStyles({
     box: {
         width: '300px',
         minHeight: '200px',
-        padding: '20px 20px 10px 20px',
-        backgroundColor: `rgb(${colors.grey})`,
+        padding: '20px',
+        backgroundColor: `white`,
         border: 'none',
         borderRadius: '5px',
         display: 'flex',
@@ -22,9 +22,8 @@ export const useStyles = makeStyles({
             flexDirection: 'column',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginBottom: "15px",
             "& div": {
-                width: '100%'
+                width: '100%',
             },
         },
         '& div': {
@@ -36,17 +35,19 @@ export const useStyles = makeStyles({
         },
         '& > button': {
             fontSize: '0.875rem',
-            minWidth: '80px',
+            minWidth: '100%',
             maxHeight: '38px',
             lineHeight: '2',
             borderBottomLeftRadius: "5px",
             borderBottomRightRadius: "5px",
             letterSpacing: '0.02857em',
             textTransform: 'uppercase',
-            border: "none",
-            borderTop: '1px solid gray',
             cursor: 'pointer',
-            boxShadow: 'none',
+            backgroundColor: 'red',
+            display: "flex",
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center'
         }
     }
 });

@@ -1,1 +1,5 @@
 export const SET_IS_AUTH = 'SET_IS_AUTH'
+export const SET_IS_OAUTH = 'SET_IS_OAUTH'
+export const FETCH_ID_FETCHING = 'FETCH_ID_FETCHING'
+export const FETCH_ID_FAIL = 'FETCH_ID_FAIL'
+export const FETCH_ID_SUCCESS = 'FETCH_ID_SUCCESS'
