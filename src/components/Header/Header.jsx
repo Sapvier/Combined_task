@@ -13,8 +13,9 @@ const Header = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const classes = useStyles();
-    const clientId = useSelector(state => state.authReducer.clientId)
-    const links = ['tickets', 'users', 'login']
+    const isAuth = useSelector(state => state.authReducer.isAuth)
+    const auth = isAuth ? 'sign out' : 'sign in'
+    const links = isAuth ? ['tickets', 'users', 'booking'] : []
 
 
     useEffect(() => {
@@ -42,17 +43,24 @@ const Header = () => {
             history.push(target)
         }
     }
+    const authHandler = () => {
+        if (isAuth) {
+            signOut()
+        }
+        else history.push('/')
+    }
 
 
     return (
         <AppBar position="static" className={classes.appBar}>
             <Toolbar className={classes.header}>
-                <div className={classes.logoWrapper}>
-                    <img src={Logo} height='60' width='60' alt="logo"/>
-                </div>
-                <div>
+                <div className={classes.linksblock}>
+                    <div className={classes.logoWrapper}>
+                        <img src={Logo} height='60' width='60' alt="logo"/>
+                    </div>
                     {links.map(item => <Button color="inherit" key={v4()} onClick={clickHandler}>{item}</Button>)}
                 </div>
+                <Button color="inherit" onClick={authHandler}>{auth}</Button>
             </Toolbar>
         </AppBar>
     );

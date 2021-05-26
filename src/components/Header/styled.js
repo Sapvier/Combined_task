@@ -23,5 +23,11 @@ export const useStyles = makeStyles({
         justifyContent: 'space-between',
         position: 'sticky',
         top: 0,
+    },
+    linksblock: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        columnGap: '15px'
     }
 })

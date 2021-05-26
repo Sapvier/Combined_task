@@ -12,6 +12,7 @@ export const fetchRequest = (params) => {
     })
 }
 
+
 export const requestTickets = (searchId) => {
     return fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
 }
@@ -36,4 +37,30 @@ export const fetchTickets = (searchId) => {
                 else return null
             }
         )
+}
+
+export const fetchUsers = () => {
+    const params = {
+        url: '/users',
+        method: 'GET',
+        body: null
+    }
+    return fetchRequest(params).then(r => r.json())
+}
+
+export const fetchUser = (path) => {
+    return fetchRequest({
+        url: path,
+        method: 'GET',
+        body: null
+    })
+        .then(r => r.json())
+}
+
+export const postUser = (user) => {
+    return fetchRequest({
+        url: "/users",
+        method: "POST",
+        body: JSON.stringify(user)
+    })
 }

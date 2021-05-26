@@ -4,8 +4,10 @@ import {ticketsReducer} from "./tickets/reducer";
 import {filterReducer} from "./filter/reducer";
 import {sortReducer} from "./sort/reducer";
 import {usersReducer} from "./users/reducer";
+import {detailedUserReducer} from "./detailedUser/reducer";
+
 
 
 export const rootReducer = combineReducers({
-    authReducer, ticketsReducer, filterReducer, sortReducer, usersReducer
+    authReducer, ticketsReducer, filterReducer, sortReducer, usersReducer, detailedUserReducer
 })

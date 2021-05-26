@@ -11,16 +11,17 @@ export const useStyles = makeStyles({
         alignItems: "center",
         flexDirection: 'column',
         backgroundColor: '#F1FCFF',
-        padding: 0
+        padding: 0,
     },
     rootCentered: {
         background: colors.main,
         maxWidth: '100%',
         minHeight: '100vh',
         display: 'flex',
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         alignItems: "center",
         flexDirection: 'column',
+        rowGap: '30px',
         backgroundColor: '#F1FCFF',
         padding: 0,
         paddingBottom: '50px'

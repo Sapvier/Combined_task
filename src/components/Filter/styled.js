@@ -1,6 +1,6 @@
 import {colors, shadows, typography} from "../../constants";
 import {makeStyles} from "@material-ui/styles";
-import checkMark from "../../assets/checkMark.svg"
+
 
 export const useStyles = makeStyles({
     aside: {

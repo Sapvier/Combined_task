@@ -6,12 +6,14 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "
 import Paper from '@material-ui/core/Paper';
 import {v4} from "uuid";
 import {useStyles} from "./styled";
+import {useHistory} from "react-router-dom";
 
 
 const UsersList = () => {
     const fields = ['#', 'Name', 'City', 'Company']
     const classes = useStyles();
     const dispatch = useDispatch()
+    const history = useHistory();
     const users = useSelector(state => state.usersReducer.users)
     const [sorted, setSorted] = useState({
         '#': true,
@@ -25,6 +27,11 @@ const UsersList = () => {
         name: false,
         city: false,
         company: false
+    }
+
+
+    const itemClickHandler = (id) => {
+        history.push(`/users/${id}`)
     }
 
 
@@ -55,7 +62,7 @@ const UsersList = () => {
                         </TableHead>
                         <TableBody>
                             {users.map((user) => (
-                                <TableRow key={user.name} className={classes.tableItem}>
+                                <TableRow key={user.name} className={classes.tableItem} onClick={() => itemClickHandler(user.id)}>
                                     <TableCell component="th" scope="row">{user.id}</TableCell>
                                     <TableCell align="left">{user.name}</TableCell>
                                     <TableCell align="left">{user.address.city}</TableCell>
@@ -66,7 +73,7 @@ const UsersList = () => {
                     </Table>
                 </TableContainer>
             </div>
-            : <h2>Loading ...</h2>
+            : <h2 className={classes.h2}>Loading ...</h2>
     )
 };
 

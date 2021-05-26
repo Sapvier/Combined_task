@@ -9,7 +9,11 @@ export const useStyles = makeStyles({
         backgroundColor: `${colors.materialPrimary}`,
         "& tr th": {
             color: 'white',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            cursor: 'pointer',
+            '&:hover': {
+                backgroundColor: 'dodgerblue'
+            }
         }
     },
     tableItem: {
@@ -20,5 +24,9 @@ export const useStyles = makeStyles({
     },
     wrapper: {
         minWidth: '90%'
+    },
+    h2: {
+        flexGrow: 2,
+        lineHeight: '200px'
     }
 });

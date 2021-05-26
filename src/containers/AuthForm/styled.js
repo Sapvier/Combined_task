@@ -45,9 +45,18 @@ export const useStyles = makeStyles({
             cursor: 'pointer',
             backgroundColor: 'red',
             display: "flex",
+            borderRadius: '4px !important',
             flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: 'center'
+            boxShadow: 'none !important',
+            alignItems: 'center',
+            border: '1px solid rgba(0, 0, 0, 0.25) !important',
+            "& > div": {
+                padding: '5px !important'
+            },
+            '&:hover': {
+                border: '1px solid rgba(0, 0, 0, 0.8) !important'
+            }
         }
     }
 });

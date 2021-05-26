@@ -9,7 +9,6 @@ export const useStyles = makeStyles({
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         rowGap: '20px',
-
         '& h3': {
             height: '70vh',
         }
