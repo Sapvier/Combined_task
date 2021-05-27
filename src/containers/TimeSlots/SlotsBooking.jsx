@@ -1,38 +1,41 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import {addDays, getDate} from "date-fns";
+import {addDays} from "date-fns";
 import {useStyles} from "./styled";
 import TimeSlots from "./TimeSlots";
-import {addingDays} from "./index";
 import {useDispatch} from "react-redux";
-import {saveMovie, setCurrentDay, setDates, setIsCurrent} from "../../store/booking/actions";
-import {fetchMovie} from "../../api/fetch";
+import {fetchMovieStart, setIsCurrent} from "../../store/booking/actions";
+import TodayIcon from '@material-ui/icons/Today';
+import CalendarModal from "../../components/Portal/CalendarModal";
 
 
 const SlotsBooking = () => {
+    const [isCalenderOpen, setIsCalenderOpen] = useState(false)
     const classes = useStyles();
     const dispatch = useDispatch()
-    const localStore = JSON.parse(localStorage.getItem('isAuth'))
 
     useEffect(() => {
-        fetchMovie()
-            .then(result => dispatch(saveMovie(result)))
-        if (localStore === null) {
-            dispatch(setDates(addingDays()))
-        }
+        dispatch(fetchMovieStart())
     }, []);
+
+    const calenderClickHandler = () => {
+        setIsCalenderOpen(!isCalenderOpen)
+    }
 
     const clickHandler = (value) => {
         dispatch(setIsCurrent((value.toString())))
-        dispatch(setCurrentDay())
     }
+
 
     return (
         <div className={classes.wrapper}>
-            <Calendar maxDate={addDays(new Date(), 7)} minDate={addDays(new Date(), -7)} showNavigation={false}
-                      onClickDay={value => clickHandler(value)}/>
+            <CalendarModal open={isCalenderOpen} onClose={() => setIsCalenderOpen(!isCalenderOpen)}>
+                <Calendar maxDate={addDays(new Date(), 7)} minDate={addDays(new Date(), -7)} showNavigation={false}
+                          onClickDay={value => clickHandler(value)} onClose={() => setIsCalenderOpen(!isCalenderOpen)}/>
+            </CalendarModal>
             <TimeSlots />
+            <TodayIcon onClick={calenderClickHandler}/>
         </div>
     );
 };

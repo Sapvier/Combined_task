@@ -6,20 +6,24 @@ export const useStyles = makeStyles({
         display: "flex",
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '90%'
+        width: '50%',
+        flexWrap: 'wrap',
+        backgroundColor: 'white',
+        border: '1px solid lightgrey',
+        borderRadius: '4px',
+        rowGap: '30px',
+        padding: 20,
+        "& svg": {
+            cursor: 'pointer'
+        }
     },
     timeSlotsWrapper: {
         minHeight:"25vh",
-        width: '50%',
         display: "flex",
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
         columnGap: '10px',
-        backgroundColor: 'white',
-        borderRadius: '4px',
-        border: '1px solid lightgray',
-        padding: 20
     },
     timeSlot: {
         width: '50px',
@@ -54,7 +58,9 @@ export const useStyles = makeStyles({
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        columnGap: '5px'
+        columnGap: '5px',
+        rowGap: '5px',
+        flexWrap: 'wrap',
     },
     imageWrapper: {
         height: '100%',
@@ -71,6 +77,7 @@ export const useStyles = makeStyles({
     },
     movieInfo: {
         height: '100%',
+        maxWidth: '70%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
