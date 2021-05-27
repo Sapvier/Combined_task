@@ -1,38 +1,38 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import {addingDays, getCurrentDay} from "./index";
 import {addDays, getDate} from "date-fns";
 import {useStyles} from "./styled";
 import TimeSlots from "./TimeSlots";
+import {addingDays} from "./index";
+import {useDispatch} from "react-redux";
+import {saveMovie, setCurrentDay, setDates, setIsCurrent} from "../../store/booking/actions";
+import {fetchMovie} from "../../api/fetch";
 
 
 const SlotsBooking = () => {
-    const [dates, setDates] = useState([])
-    const [activeDay, setActiveDay] = useState({})
     const classes = useStyles();
+    const dispatch = useDispatch()
+    const localStore = JSON.parse(localStorage.getItem('isAuth'))
 
     useEffect(() => {
-        setDates(addingDays())
-        setActiveDay(getCurrentDay())
+        fetchMovie()
+            .then(result => dispatch(saveMovie(result)))
+        if (localStore === null) {
+            dispatch(setDates(addingDays()))
+        }
     }, []);
 
     const clickHandler = (value) => {
-        setDates(dates.map(item => {
-            if (item.date === getDate(value)) {
-                setActiveDay({...item, isCurrent: true})
-                return {...item, isCurrent: true}
-            } else {
-                return {...item, isCurrent: false}
-            }
-        }))
+        dispatch(setIsCurrent((value.toString())))
+        dispatch(setCurrentDay())
     }
 
     return (
         <div className={classes.wrapper}>
-            <Calendar maxDate={addDays(new Date(), 6)} minDate={new Date()} showNavigation={false}
+            <Calendar maxDate={addDays(new Date(), 7)} minDate={addDays(new Date(), -7)} showNavigation={false}
                       onClickDay={value => clickHandler(value)}/>
-            <TimeSlots activeDay={activeDay}/>
+            <TimeSlots />
         </div>
     );
 };

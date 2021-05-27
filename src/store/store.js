@@ -15,7 +15,8 @@ export const store = createStore(rootReducer, persistedState, composeWithDevTool
 
 store.subscribe(() => {
     saveState({
-            authReducer: store.getState().authReducer
+            authReducer: store.getState().authReducer,
+            bookingReducer: store.getState().bookingReducer
         }
     )
 })

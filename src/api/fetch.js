@@ -64,3 +64,8 @@ export const postUser = (user) => {
         body: JSON.stringify(user)
     })
 }
+
+export const fetchMovie = () => {
+    return fetch('http://api.tvmaze.com/search/shows?q=batman')
+        .then(r => r.json())
+}

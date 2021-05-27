@@ -40,6 +40,7 @@ const AuthForm = () => {
             error: false
         })
     }
+    console.log(JSON.parse(localStorage.getItem('isAuth')))
 
 
     return (
